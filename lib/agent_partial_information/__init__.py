@@ -5,4 +5,4 @@ __email__ = 'fradurand@gmail.com'
 __version__ = '0.1.0'
 
 
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
