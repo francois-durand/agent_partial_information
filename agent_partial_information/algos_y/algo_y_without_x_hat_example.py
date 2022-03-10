@@ -15,15 +15,15 @@ class AlgoYWithoutXHatExample(AlgoY):
         'Some value based on the fact that x > 0'
     """
 
-    def __init__(self, algo_on_x_sign: AlgoSignX = None):
+    def __init__(self, algo_sign_x: AlgoSignX = None):
         super().__init__()
-        if algo_on_x_sign is None:
-            algo_on_x_sign = AlgoSignX()
-        self.algo_on_x_sign = algo_on_x_sign
+        if algo_sign_x is None:
+            algo_sign_x = AlgoSignX()
+        self.algo_sign_x = algo_sign_x
 
     def _receive_new_value(self, x, t):
-        self.algo_on_x_sign(x, t)
-        if self.algo_on_x_sign.sign_x_ == 1:
+        self.algo_sign_x(x, t)
+        if self.algo_sign_x.sign_x_ == 1:
             self.y_ = "Some value based on the fact that x > 0"
         else:
             self.y_ = "Some value based on the fact that x <= 0"

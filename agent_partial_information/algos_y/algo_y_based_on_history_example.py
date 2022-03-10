@@ -22,12 +22,12 @@ class AlgoYBasedOnHistoryExample(AlgoY):
         30.35844985184005
     """
 
-    def __init__(self, algo_on_x_history_x_hat: AlgoHistoryXHat):
+    def __init__(self, algo_history_x_hat: AlgoHistoryXHat):
         super().__init__()
-        self.algo_on_x_history_x_hat = algo_on_x_history_x_hat
+        self.algo_history_x_hat = algo_history_x_hat
 
     def _receive_new_value(self, x, t):
-        history = self.algo_on_x_history_x_hat(x, t).history_
+        history = self.algo_history_x_hat(x, t).history_
         if t == 0:
             self.y_ = 2 * history[0]
         else:

@@ -35,16 +35,16 @@ class AlgoXHatLinearRegression(AlgoXHat):
         98.58462925794959
     """
 
-    def __init__(self, algo_on_x_history_x_hat: AlgoHistoryXHat):
+    def __init__(self, algo_history_x_hat: AlgoHistoryXHat):
         super().__init__()
-        self.algo_on_x_history_x_hat = algo_on_x_history_x_hat
+        self.algo_history_x_hat = algo_history_x_hat
 
     def _receive_new_value(self, x, t):
-        self.algo_on_x_history_x_hat(x, t)
+        self.algo_history_x_hat(x, t)
         if t == 0:  # Because with only one value, linear regression is not defined.
-            self.x_hat_ = self.algo_on_x_history_x_hat.history_[0]
+            self.x_hat_ = self.algo_history_x_hat.history_[0]
             return
-        history = self.algo_on_x_history_x_hat.history_
+        history = self.algo_history_x_hat.history_
         fit = np.polyfit(list(history.keys()), list(history.values()), 1)
         poly = np.poly1d(fit)
         self.x_hat_ = poly(t)

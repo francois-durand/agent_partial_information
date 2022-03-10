@@ -15,7 +15,7 @@ class AlgoXHatBasedOnXHatAndAbsExample(AlgoXHat):
     ----------
     sub_algo_x_hat: AlgoXHat
         An algo that computes a `x_hat_` (a value of the same type as `x`).
-    algo_on_x_abs: AlgoAbsX
+    algo_abs_x: AlgoAbsX
         Default: AlgoOnXAbs().
 
     Examples
@@ -30,7 +30,7 @@ class AlgoXHatBasedOnXHatAndAbsExample(AlgoXHat):
 
         >>> estimate_x = AlgoXHatBasedOnXHatAndAbsExample(
         ...     sub_algo_x_hat=measurer_x_noisy,
-        ...     algo_on_x_abs=measurer_x_abs
+        ...     algo_abs_x=measurer_x_abs
         ... )
 
     Now, let us see what happens when we feed the algorithm:
@@ -51,15 +51,15 @@ class AlgoXHatBasedOnXHatAndAbsExample(AlgoXHat):
         -12.0
     """
 
-    def __init__(self, sub_algo_x_hat: AlgoXHat, algo_on_x_abs: AlgoAbsX = None):
+    def __init__(self, sub_algo_x_hat: AlgoXHat, algo_abs_x: AlgoAbsX = None):
         super().__init__()
         self.sub_algo_x_hat = sub_algo_x_hat
-        if algo_on_x_abs is None:
-            algo_on_x_abs = AlgoAbsX()
-        self.algo_on_x_abs = algo_on_x_abs
+        if algo_abs_x is None:
+            algo_abs_x = AlgoAbsX()
+        self.algo_abs_x = algo_abs_x
 
     def _receive_new_value(self, x, t):
         self.sub_algo_x_hat(x, t)
-        self.algo_on_x_abs(x, t)
+        self.algo_abs_x(x, t)
         sign_x_hat_ = np.sign(self.sub_algo_x_hat.x_hat_)
-        self.x_hat_ = sign_x_hat_ * self.algo_on_x_abs.abs_x_
+        self.x_hat_ = sign_x_hat_ * self.algo_abs_x.abs_x_

@@ -37,9 +37,9 @@ class AgentDelegateAlgos(Agent):
     In the setting above, note that the algos for `y` and `z` share the same measures and the same history
     (which is generally desired):
 
-        >>> algo_y.algo_on_x_history_x_hat.history_
+        >>> algo_y.algo_history_x_hat.history_
         {0: 12.496714153011233}
-        >>> algo_z.algo_on_x_history_x_hat.history_
+        >>> algo_z.algo_history_x_hat.history_
         {0: 12.496714153011233}
 
     However, in principle, it is also possible to model a situation where each algorithm has its own measures
@@ -67,12 +67,12 @@ class AgentDelegateAlgos(Agent):
 
         >>> agent = AgentDelegateAlgos(
         ...     algo_y=AlgoYBasedOnHistoryExample(
-        ...         algo_on_x_history_x_hat=AlgoHistoryXHat(
+        ...         algo_history_x_hat=AlgoHistoryXHat(
         ...             algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.)
         ...         )
         ...     ),
         ...     algo_z=AlgoZBasedOnHistoryExample(
-        ...         algo_on_x_history_x_hat=AlgoHistoryXHat(
+        ...         algo_history_x_hat=AlgoHistoryXHat(
         ...             algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.)
         ...         )
         ...     )
