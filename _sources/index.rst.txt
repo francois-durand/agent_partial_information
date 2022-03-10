@@ -8,7 +8,6 @@ Welcome to Agent with Partial Information's documentation!
    readme
    installation
    usage
-   reference/index
    contributing
    authors
    history
