@@ -1,4 +1,4 @@
-from agent_partial_information.algos_x_hat.algo_x_hat_exact import AlgoXHatExact
+from agent_partial_information.algos_x_hat.algo_x_hat_identity import AlgoXHatIdentity
 from agent_partial_information.algos_y.algo_y import AlgoY
 from agent_partial_information.algos_y.algo_y_based_on_x_hat_example import AlgoYBasedOnXHatExample
 from agent_partial_information.algos_z.algo_z import AlgoZ
@@ -14,7 +14,7 @@ class AlgoZBasedOnYExample(AlgoZ):
 
     Examples
     --------
-        >>> algo_y = AlgoYBasedOnXHatExample(algo_x_hat=AlgoXHatExact())
+        >>> algo_y = AlgoYBasedOnXHatExample(algo_x_hat=AlgoXHatIdentity())
         >>> algo_z = AlgoZBasedOnYExample(algo_y)
         >>> algo_z(x=12, t=0).z_
         Long computation...

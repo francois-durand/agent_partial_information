@@ -8,7 +8,7 @@ from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import 
 from agent_partial_information.algos_on_x.algo_on_x_history_x_hat import AlgoOnXHistoryXHat
 from agent_partial_information.algos_y.algo_y_based_on_x_hat_example import AlgoYBasedOnXHatExample
 from agent_partial_information.algos_z.algo_z_based_on_y_example import AlgoZBasedOnYExample
-from agent_partial_information.algos_x_hat.algo_x_hat_exact import AlgoXHatExact
+from agent_partial_information.algos_x_hat.algo_x_hat_identity import AlgoXHatIdentity
 
 
 class AgentDelegateAlgos(Agent):
@@ -81,7 +81,7 @@ class AgentDelegateAlgos(Agent):
     The algorithms do not need to be "independent". For example, the algorithm for `z` can be based on the
     computation of `y`:
 
-        >>> measurer_x = AlgoXHatExact()
+        >>> measurer_x = AlgoXHatIdentity()
         >>> algo_y = AlgoYBasedOnXHatExample(measurer_x)
         >>> algo_z = AlgoZBasedOnYExample(algo_y)
         >>> agent = AgentDelegateAlgos(algo_y, algo_z)
