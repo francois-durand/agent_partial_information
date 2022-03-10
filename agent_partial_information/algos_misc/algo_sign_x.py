@@ -1,13 +1,13 @@
 import numpy as np
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 
 
-class AlgoOnXSign(AlgoOnX):
+class AlgoSignX(AlgoOnX):
     """Compute the sign of current `x`.
 
     Examples
     --------
-        >>> algo = AlgoOnXSign()
+        >>> algo = AlgoSignX()
         >>> algo(x=-12, t=0).sign_x_
         -1
     """

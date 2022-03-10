@@ -1,4 +1,4 @@
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 
 
 class Agent(AlgoOnX):

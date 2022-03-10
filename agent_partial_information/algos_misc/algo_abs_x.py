@@ -1,12 +1,12 @@
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 
 
-class AlgoOnXAbs(AlgoOnX):
+class AlgoAbsX(AlgoOnX):
     """Compute the absolute value of current `x`.
 
     Examples
     --------
-        >>> algo = AlgoOnXAbs()
+        >>> algo = AlgoAbsX()
         >>> algo(x=-12, t=0)  # doctest: +ELLIPSIS
         <...>
         >>> algo.abs_x_

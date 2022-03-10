@@ -1,11 +1,11 @@
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 
 
 class AlgoXHat(AlgoOnX):
     """An algo that computes `x_hat_`, something that "looks like" `x`.
 
-    In particular, `x_hat_` must have the same type as `x`. In real applications of this
-    "proof of concept package", where `x` will be a matrix, `x_hat_` should also have the same shape
+    In particular, `x_hat_` must have the same type as `x`. But not only: in real applications of this
+    "proof-of-concept package", where `x` will be a matrix, `x_hat_` should also have the same shape
     as `x` for example.
     """
 

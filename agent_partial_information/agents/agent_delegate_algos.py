@@ -5,7 +5,7 @@ from agent_partial_information.algos_y.algo_y_based_on_history_example import Al
 from agent_partial_information.algos_z.algo_z import AlgoZ
 from agent_partial_information.algos_z.algo_z_based_on_history_example import AlgoZBasedOnHistoryExample
 from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import AlgoXHatAddGaussianNoise
-from agent_partial_information.algos_on_x.algo_on_x_history_x_hat import AlgoOnXHistoryXHat
+from agent_partial_information.algos_misc.algo_history_x_hat import AlgoHistoryXHat
 from agent_partial_information.algos_y.algo_y_based_on_x_hat_example import AlgoYBasedOnXHatExample
 from agent_partial_information.algos_z.algo_z_based_on_y_example import AlgoZBasedOnYExample
 from agent_partial_information.algos_x_hat.algo_x_hat_identity import AlgoXHatIdentity
@@ -19,7 +19,7 @@ class AgentDelegateAlgos(Agent):
     Define our compositions:
 
         >>> measurer_x = AlgoXHatAddGaussianNoise(noise_intensity=1.)
-        >>> recorder_measures_x = AlgoOnXHistoryXHat(measurer_x)
+        >>> recorder_measures_x = AlgoHistoryXHat(measurer_x)
         >>> algo_y = AlgoYBasedOnHistoryExample(recorder_measures_x)
         >>> algo_z = AlgoZBasedOnHistoryExample(recorder_measures_x)
         >>> agent = AgentDelegateAlgos(algo_y, algo_z)
@@ -47,8 +47,8 @@ class AgentDelegateAlgos(Agent):
 
         >>> measurer_x_for_y = AlgoXHatAddGaussianNoise(noise_intensity=1.)
         >>> measurer_x_for_z = AlgoXHatAddGaussianNoise(noise_intensity=1.)
-        >>> recorder_measures_x_for_y = AlgoOnXHistoryXHat(measurer_x_for_y)
-        >>> recorder_measures_x_for_z = AlgoOnXHistoryXHat(measurer_x_for_z)
+        >>> recorder_measures_x_for_y = AlgoHistoryXHat(measurer_x_for_y)
+        >>> recorder_measures_x_for_z = AlgoHistoryXHat(measurer_x_for_z)
         >>> algo_y = AlgoYBasedOnHistoryExample(recorder_measures_x_for_y)
         >>> algo_z = AlgoZBasedOnHistoryExample(recorder_measures_x_for_z)
         >>> agent = AgentDelegateAlgos(algo_y, algo_z)
@@ -67,12 +67,12 @@ class AgentDelegateAlgos(Agent):
 
         >>> agent = AgentDelegateAlgos(
         ...     algo_y=AlgoYBasedOnHistoryExample(
-        ...         algo_on_x_history_x_hat=AlgoOnXHistoryXHat(
+        ...         algo_on_x_history_x_hat=AlgoHistoryXHat(
         ...             algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.)
         ...         )
         ...     ),
         ...     algo_z=AlgoZBasedOnHistoryExample(
-        ...         algo_on_x_history_x_hat=AlgoOnXHistoryXHat(
+        ...         algo_on_x_history_x_hat=AlgoHistoryXHat(
         ...             algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.)
         ...         )
         ...     )

@@ -5,12 +5,12 @@ from agent_partial_information.algos_z.algo_z import AlgoZ
 
 
 class AlgoZBasedOnYExample(AlgoZ):
-    """Example of algo for `z_` based on the value of `y_`.
+    """Example of algo for `z_` based on the value of `y_` computed by a dedicated algorithm.
 
     Parameters
     ----------
     algo_y: AlgoY
-        The algo for computing `y_`.
+        The algorithm for computing `y_`.
 
     Examples
     --------

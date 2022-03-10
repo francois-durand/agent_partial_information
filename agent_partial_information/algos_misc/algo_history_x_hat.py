@@ -1,11 +1,11 @@
 import numpy as np
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 from agent_partial_information.algos_x_hat.algo_x_hat import AlgoXHat
 from agent_partial_information.algos_x_hat.algo_x_hat_identity import AlgoXHatIdentity
 from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import AlgoXHatAddGaussianNoise
 
 
-class AlgoOnXHistoryXHat(AlgoOnX):
+class AlgoHistoryXHat(AlgoOnX):
     """Records a history of values of `x_hat_`.
 
     Parameters
@@ -17,7 +17,7 @@ class AlgoOnXHistoryXHat(AlgoOnX):
     --------
     The simplest use case is to record the *exact* values of `x`:
 
-        >>> algo = AlgoOnXHistoryXHat(algo_x_hat=AlgoXHatIdentity())
+        >>> algo = AlgoHistoryXHat(algo_x_hat=AlgoXHatIdentity())
         >>> algo(x=12, t=0)  # doctest: +ELLIPSIS
         <...>
         >>> algo(x=51, t=1)  # doctest: +ELLIPSIS
@@ -28,7 +28,7 @@ class AlgoOnXHistoryXHat(AlgoOnX):
     But for example, we can also record noisy values of `x`:
 
         >>> np.random.seed(42)
-        >>> algo = AlgoOnXHistoryXHat(algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.))
+        >>> algo = AlgoHistoryXHat(algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.))
         >>> algo(x=12, t=0)  # doctest: +ELLIPSIS
         <...>
         >>> algo(x=51, t=1)  # doctest: +ELLIPSIS

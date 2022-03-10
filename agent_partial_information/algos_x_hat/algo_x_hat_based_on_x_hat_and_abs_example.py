@@ -2,25 +2,28 @@ import numpy as np
 
 from agent_partial_information.algos_x_hat.algo_x_hat import AlgoXHat
 from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import AlgoXHatAddGaussianNoise
-from agent_partial_information.algos_on_x.algo_on_x_abs import AlgoOnXAbs
+from agent_partial_information.algos_misc.algo_abs_x import AlgoAbsX
 
 
 class AlgoXHatBasedOnXHatAndAbsExample(AlgoXHat):
-    """Try to recover the value of `x`, based on another `x_hat_` and the exact absolute value of `x`.
+    """An example of algorithm that is based on two other algorithms.
+
+    Here we try to recover the value of `x`, based on another `x_hat_` (which will give the
+    correct sign if we are lucky) and the exact absolute value of `x`.
 
     Parameters
     ----------
     sub_algo_x_hat: AlgoXHat
         An algo that computes a `x_hat_` (a value of the same type as `x`).
-    algo_on_x_abs: AlgoOnXAbs
+    algo_on_x_abs: AlgoAbsX
         Default: AlgoOnXAbs().
 
     Examples
     --------
-    Assume that you are able to measure the absolute value of `x`, and a noisy (signed) version of `x`:
+    Assume that you are able to measure the absolute value of `x`, and a noisy version of `x` (with sign):
 
         >>> np.random.seed(42)
-        >>> measurer_x_abs = AlgoOnXAbs()
+        >>> measurer_x_abs = AlgoAbsX()
         >>> measurer_x_noisy = AlgoXHatAddGaussianNoise(noise_intensity=1.)
 
     Then you may want to recover the value of `x` by this composition:
@@ -48,11 +51,11 @@ class AlgoXHatBasedOnXHatAndAbsExample(AlgoXHat):
         -12.0
     """
 
-    def __init__(self, sub_algo_x_hat: AlgoXHat, algo_on_x_abs: AlgoOnXAbs = None):
+    def __init__(self, sub_algo_x_hat: AlgoXHat, algo_on_x_abs: AlgoAbsX = None):
         super().__init__()
         self.sub_algo_x_hat = sub_algo_x_hat
         if algo_on_x_abs is None:
-            algo_on_x_abs = AlgoOnXAbs()
+            algo_on_x_abs = AlgoAbsX()
         self.algo_on_x_abs = algo_on_x_abs
 
     def _receive_new_value(self, x, t):

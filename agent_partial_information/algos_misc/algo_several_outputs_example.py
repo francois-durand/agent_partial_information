@@ -1,14 +1,16 @@
-from agent_partial_information.algos_on_x.algo_on_x import AlgoOnX
+from agent_partial_information.algo_on_x import AlgoOnX
 
 
-class AlgoOnXSeveralOutputsExample(AlgoOnX):
-    """Compute the square and the cube of current `x`.
+class AlgoSeveralOutputsExample(AlgoOnX):
+    """Compute several outputs based on the current `x`.
+
+    For this example, we compute the square and the sube of current `x`.
 
     Examples
     --------
     Basic usage:
 
-        >>> algo = AlgoOnXSeveralOutputsExample()
+        >>> algo = AlgoSeveralOutputsExample()
         >>> algo(x=12, t=0)  # doctest: +ELLIPSIS
         Potentially long computation...
         <...>
@@ -17,10 +19,10 @@ class AlgoOnXSeveralOutputsExample(AlgoOnX):
         >>> algo.x_cube_
         1728
 
-    Note that if you use the one-liner syntax, even if you pass the arguments each time, the computation is only
-    done once:
+    Note that even if you use the one-liner syntax, and even if you pass the arguments each time, the computation
+    is only performed once:
 
-        >>> algo = AlgoOnXSeveralOutputsExample()
+        >>> algo = AlgoSeveralOutputsExample()
         >>> algo(x=12, t=0).x_square_
         Potentially long computation...
         144

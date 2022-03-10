@@ -6,7 +6,7 @@ class AlgoOnX:
 
     Examples
     --------
-        Cf. :class:`AlgoOnXAbs`.
+        Cf. :class:`AlgoAbsX`.
     """
 
     def __init__(self):
