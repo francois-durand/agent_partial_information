@@ -3,7 +3,7 @@ from agent_partial_information.algos_y.algo_y_constant import AlgoYConstant
 from agent_partial_information.algos_z.algo_z_based_on_history_example import AlgoZBasedOnHistoryExample
 from agent_partial_information.algos_on_x.algo_on_x_history_x_hat import AlgoOnXHistoryXHat
 from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import AlgoXHatAddGaussianNoise
-from agent_partial_information.agents.agent_independent_algos import AgentIndependentAlgos
+from agent_partial_information.agents.agent_delegate_algos import AgentDelegateAlgos
 
 
 class Simulator:
@@ -11,7 +11,7 @@ class Simulator:
 
     At each time slot, the value of `x` is generated. Then the agent computes `y_` and `z_`. Then the performance
     of the system is evaluated, depending on `x`, `y_` and `z_`.
-    
+
     Examples
     --------
         >>> np.random.seed(42)
@@ -19,7 +19,7 @@ class Simulator:
         >>> recorder_measures_x = AlgoOnXHistoryXHat(measurer_x)
         >>> algo_y = AlgoYConstant(y="the_constant_y")
         >>> algo_z = AlgoZBasedOnHistoryExample(recorder_measures_x)
-        >>> agent = AgentIndependentAlgos(algo_y, algo_z)
+        >>> agent = AgentDelegateAlgos(algo_y, algo_z)
         >>> simulator = Simulator(n_time_slots=5, agent=agent)
         >>> simulator.run()
         Evaluate performance depending on x=-1.254598811526375, y='the_constant_y', z=5.600222524114371.

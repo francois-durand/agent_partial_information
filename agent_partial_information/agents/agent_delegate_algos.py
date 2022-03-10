@@ -6,10 +6,13 @@ from agent_partial_information.algos_z.algo_z import AlgoZ
 from agent_partial_information.algos_z.algo_z_based_on_history_example import AlgoZBasedOnHistoryExample
 from agent_partial_information.algos_x_hat.algo_x_hat_add_gaussian_noise import AlgoXHatAddGaussianNoise
 from agent_partial_information.algos_on_x.algo_on_x_history_x_hat import AlgoOnXHistoryXHat
+from agent_partial_information.algos_y.algo_y_based_on_x_hat_example import AlgoYBasedOnXHatExample
+from agent_partial_information.algos_z.algo_z_based_on_y_example import AlgoZBasedOnYExample
+from agent_partial_information.algos_x_hat.algo_x_hat_exact import AlgoXHatExact
 
 
-class AgentIndependentAlgos(Agent):
-    """Generic agent that composes an `AlgoY` and an `AlgoZ`.
+class AgentDelegateAlgos(Agent):
+    """Generic agent that delegates the task to an `AlgoY` and an `AlgoZ`.
 
     Examples
     --------
@@ -19,7 +22,7 @@ class AgentIndependentAlgos(Agent):
         >>> recorder_measures_x = AlgoOnXHistoryXHat(measurer_x)
         >>> algo_y = AlgoYBasedOnHistoryExample(recorder_measures_x)
         >>> algo_z = AlgoZBasedOnHistoryExample(recorder_measures_x)
-        >>> agent = AgentIndependentAlgos(algo_y, algo_z)
+        >>> agent = AgentDelegateAlgos(algo_y, algo_z)
 
     And here we go:
 
@@ -48,7 +51,7 @@ class AgentIndependentAlgos(Agent):
         >>> recorder_measures_x_for_z = AlgoOnXHistoryXHat(measurer_x_for_z)
         >>> algo_y = AlgoYBasedOnHistoryExample(recorder_measures_x_for_y)
         >>> algo_z = AlgoZBasedOnHistoryExample(recorder_measures_x_for_z)
-        >>> agent = AgentIndependentAlgos(algo_y, algo_z)
+        >>> agent = AgentDelegateAlgos(algo_y, algo_z)
 
     And here we go again:
 
@@ -62,7 +65,7 @@ class AgentIndependentAlgos(Agent):
 
     The same can be achieved with some big composition, like this:
 
-        >>> agent = AgentIndependentAlgos(
+        >>> agent = AgentDelegateAlgos(
         ...     algo_y=AlgoYBasedOnHistoryExample(
         ...         algo_on_x_history_x_hat=AlgoOnXHistoryXHat(
         ...             algo_x_hat=AlgoXHatAddGaussianNoise(noise_intensity=1.)
@@ -74,6 +77,21 @@ class AgentIndependentAlgos(Agent):
         ...         )
         ...     )
         ... )
+
+    The algorithms do not need to be "independent". For example, the algorithm for `z` can be based on the
+    computation of `y`:
+
+        >>> measurer_x = AlgoXHatExact()
+        >>> algo_y = AlgoYBasedOnXHatExample(measurer_x)
+        >>> algo_z = AlgoZBasedOnYExample(algo_y)
+        >>> agent = AgentDelegateAlgos(algo_y, algo_z)
+        >>> agent(x=12, t=0)  # doctest: +ELLIPSIS
+        Long computation...
+        <...>
+        >>> agent.y_
+        24
+        >>> agent.z_
+        'Some value of `z` based on y=24'
     """
 
     def __init__(self, algo_y: AlgoY, algo_z: AlgoZ):

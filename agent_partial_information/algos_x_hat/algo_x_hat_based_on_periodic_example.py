@@ -1,15 +1,15 @@
 from agent_partial_information.algos_x_hat.algo_x_hat_periodic import AlgoXHatPeriodic
-from agent_partial_information.algos_x_hat.algo_x_hat_periodic_exact import EstimatorXPeriodicExact
+from agent_partial_information.algos_x_hat.algo_x_hat_periodic_exact import AlgoXHatPeriodicExact
 
 
-class EstimatorXBasedOnPeriodicExample(AlgoXHatPeriodic):
+class AlgoXHatBasedOnPeriodicExample(AlgoXHatPeriodic):
     """Exponential moving average.
 
     Examples
     --------
-        >>> algo_x_hat = EstimatorXBasedOnPeriodicExample(
+        >>> algo_x_hat = AlgoXHatBasedOnPeriodicExample(
         ...     update_ratio=.5,
-        ...     sub_algo_x_hat_periodic=EstimatorXPeriodicExact(period=2)
+        ...     sub_algo_x_hat_periodic=AlgoXHatPeriodicExact(period=2)
         ... )
         >>> algo_x_hat(x=12, t=0)  # doctest: +ELLIPSIS
         <...>
